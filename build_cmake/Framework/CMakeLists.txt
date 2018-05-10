@@ -51,6 +51,8 @@ set(COMMON_SRC_FILES
 	../../src/HashUtils.cpp
 	../../include/HashUtils.h
 	../../src/idct/IEEE1180.cpp
+	../../src/JsonParser.cpp
+	../../include/JsonParser.h
 	../../src/layout/FlatLayout.cpp
 	../../src/layout/GridLayout.cpp
 	../../src/layout/HorizontalLayout.cpp
