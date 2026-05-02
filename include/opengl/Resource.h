@@ -116,9 +116,23 @@ namespace Framework
 			}
 		};
 
+		struct RenderbufferTraits
+		{
+			static void Creator(GLsizei amount, GLuint* values)
+			{
+				glGenRenderbuffers(amount, values);
+			}
+
+			static void Deletor(GLsizei amount, GLuint* values)
+			{
+				glDeleteRenderbuffers(amount, values);
+			}
+		};
+
 		typedef CResource<BufferTraits> CBuffer;
 		typedef CResource<VertexArrayTraits> CVertexArray;
 		typedef CResource<TextureTraits> CTexture;
 		typedef CResource<FramebufferTraits> CFramebuffer;
+		typedef CResource<RenderbufferTraits> CRenderbuffer;
 	}
 };
