@@ -184,10 +184,11 @@ bool CParser::ProcessChar_Comment(char nChar)
 {
 	if(nChar == '>')
 	{
-		if(!std::string(m_text.end() - 2, m_text.end()).compare("--"))
+		auto lastTwoChars = static_cast<std::string_view>(m_text).substr(m_text.size() - 2);
+		if(!lastTwoChars.compare("--"))
 		{
 			//Comment end
-			m_text = "";
+			m_text.clear();
 			m_state = STATE_TEXT;
 			return true;
 		}
