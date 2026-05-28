@@ -1,18 +1,20 @@
 #include "XmlTest.h"
-#include <string>
 #include <cstring>
 #include <cstdint>
+#include <string_view>
 #include "PtrStream.h"
 #include "xml/Parser.h"
 #include "xml/Utils.h"
 #include "TestDefs.h"
 
-static const char* g_escapeCharXml = "<root>Bacon &amp; Eggs</root>";
+using namespace std::literals;
+
+static const std::string_view g_escapeCharXml = "<root>Bacon &amp; Eggs</root>"sv;
 
 void XmlTest_Execute()
 {
 	{
-		Framework::CPtrStream input(g_escapeCharXml, strlen(g_escapeCharXml));
+		Framework::CPtrStream input(g_escapeCharXml.data(), g_escapeCharXml.size());
 		auto node = Framework::Xml::CParser::ParseDocument(input);
 		auto rootNode = node->Select("root");
 		TEST_VERIFY(!strcmp(rootNode->GetInnerText(), "Bacon & Eggs"));
