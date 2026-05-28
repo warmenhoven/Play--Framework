@@ -10,6 +10,7 @@
 using namespace std::literals;
 
 static const std::string_view g_escapeCharXml = "<root>Bacon &amp; Eggs</root>"sv;
+static const std::string_view g_commentXml = "<root><!-- This is a comment --></root>"sv;
 
 void XmlTest_Execute()
 {
@@ -18,6 +19,12 @@ void XmlTest_Execute()
 		auto node = Framework::Xml::CParser::ParseDocument(input);
 		auto rootNode = node->Select("root");
 		TEST_VERIFY(!strcmp(rootNode->GetInnerText(), "Bacon & Eggs"));
+	}
+	{
+		Framework::CPtrStream input(g_commentXml.data(), g_commentXml.size());
+		auto node = Framework::Xml::CParser::ParseDocument(input);
+		auto rootNode = node->Select("root");
+		TEST_VERIFY(!rootNode->GetInnerText());
 	}
 	{
 		static const int32 intValue = INT32_MAX;
