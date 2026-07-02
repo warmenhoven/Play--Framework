@@ -61,6 +61,10 @@ namespace Framework
 			//VK_KHR_xcb_surface
 			DECLARE_FUNCTION(vkCreateXcbSurfaceKHR)
 #endif
+#if defined(VK_USE_PLATFORM_WAYLAND_KHR)
+			//VK_KHR_wayland_surface
+			DECLARE_FUNCTION(vkCreateWaylandSurfaceKHR)
+#endif
 #if defined(VK_USE_PLATFORM_WIN32_KHR)
 			//VK_KHR_win32_surface
 			DECLARE_FUNCTION(vkCreateWin32SurfaceKHR)
